@@ -1,0 +1,58 @@
+package ClimateFramework;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  dbrtl,
+  bindengine,
+  bindcomp,
+  RESTComponents,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon;
+
+contains
+  CF.Connections.Rest.Connector in 'Source\Connections\CF.Connections.Rest.Connector.pas',
+  CF.Connections.Interfaces in 'Source\Connections\CF.Connections.Interfaces.pas',
+  CF.Connections.Rest.Interfaces in 'Source\Connections\CF.Connections.Rest.Interfaces.pas',
+  CF.Connections.Rest.Connector.RR4D in 'Source\Connections\CF.Connections.Rest.Connector.RR4D.pas',
+  CF.Services.ClimateFinder.Interfaces in 'Source\Services\CF.Services.ClimateFinder.Interfaces.pas',
+  CF.Services.ClimateFinder in 'Source\Services\CF.Services.ClimateFinder.pas',
+  CF.Services.ClimateFinder.Types in 'Source\Services\CF.Services.ClimateFinder.Types.pas',
+  CF.Services.ClimateFinder.Adapters in 'Source\Services\CF.Services.ClimateFinder.Adapters.pas',
+  CF.Services.ClimateFinder.Provider.ClimaTempo in 'Source\Services\CF.Services.ClimateFinder.Provider.ClimaTempo.pas',
+  CF.Entities.ClimateData in 'Source\Entities\CF.Entities.ClimateData.pas',
+  CF.Connections.Rest.Provider in 'Source\Connections\CF.Connections.Rest.Provider.pas',
+  CF.StringUtils in 'Source\Utils\CF.StringUtils.pas';
+
+end.
+
+
+
