@@ -1,0 +1,14 @@
+{
+	"hash": "d41d8cd98f00b204e9800998ecf8427e",
+	"updated": "2021-09-24T17:20:42.7955651-03:00",
+	"installedModules": {
+		"https://github.com/vsofttechnologies/delphi-mocks": {
+			"name": "delphi-mocks",
+			"version": "v0.2.1",
+			"hash": "7ff32fde88a301b4728a1f07f4063c0f",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		}
+	}
+}

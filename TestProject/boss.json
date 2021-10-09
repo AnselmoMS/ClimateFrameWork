@@ -1,0 +1,11 @@
+{
+	"name": "Library.Tests",
+	"description": "Projeto de testes da Biblioteca Climate Framework",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "Source",
+	"projects": [],
+	"dependencies": {
+		"https://github.com/vsofttechnologies/delphi-mocks": "^v0.2.1"
+	}
+}
