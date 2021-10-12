@@ -1,11 +1,11 @@
-unit CF.Services.ClimateFinder.Adapter.ResourceLoader;
+unit CF.Utils.ResourceLoader;
 
 interface
 uses
   System.Classes,
   System.Types,
-  CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces,
-  CF.Services.ClimateFinder.Adapter.ResourceLoader.Types;
+  CF.Utils.ResourceLoader.Interfaces,
+  CF.Utils.ResourceLoader.Types;
 
 type
   TCustomResourceLoader = class(TInterfacedObject, IResourceLoader)
@@ -36,7 +36,7 @@ end;
 
 function TCustomResourceLoader.GetStreamByName(_AResourceName: string): TResourceStream;
 begin
-  Result := TResourceStream.Create(FHandle,'cfiSun' {_AResourceName}, RT_RCDATA);
+  Result := TResourceStream.Create(FHandle, _AResourceName, RT_RCDATA);
 end;
 
 function TCustomResourceLoader.GetStreamByResource(AResource: TCFResource): TResourceStream;
@@ -51,7 +51,8 @@ end;
 
 function TCustomResourceLoader.WithHandle(_AHandle: NativeUInt): IResourceLoader;
 begin
-  FHandle := _AHandle
+  FHandle := _AHandle;
+  Result := Self;
 end;
 
 end.

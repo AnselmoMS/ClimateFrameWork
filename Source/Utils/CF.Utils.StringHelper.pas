@@ -1,16 +1,23 @@
-unit CF.StringUtils;
+unit CF.Utils.StringHelper;
 
 interface
-
-function FormatString(_Text: string; _Values: array of string): String;
-
-implementation
 
 uses
   System.Classes,
   System.SysUtils;
 
-function FormatString(_Text: string; _Values: array of string): String;
+type
+  TCFSystemStringHelper = record helper for string
+  end;
+
+  TCFStringHelper = record helper for string
+  public
+    function FormatValues(_Values: array of string): String;
+  end;
+
+implementation
+
+function TCFStringHelper.FormatValues(_Values: array of string): String;
 var
   LFormatStringParams: array of TVarRec;
   LString: UnicodeString;
@@ -28,7 +35,7 @@ begin
     LFormatStringParams[LstrIndex].VUnicodeString := Pointer(LString);
   end;
 
-  Result:= Format(_Text, LFormatStringParams);
+  Result:= System.SysUtils.Format(Self, LFormatStringParams);
 end;
 
 end.

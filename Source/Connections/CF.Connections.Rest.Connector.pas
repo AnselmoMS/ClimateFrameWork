@@ -4,7 +4,8 @@ interface
 uses
   System.SysUtils,
   System.JSON,
-  CF.Connections.Rest.Interfaces;
+  CF.Connections.Rest.Interfaces,
+  CF.Utils.StringHelper;
 
 type
   TRestConnector = class(TInterfacedObject, IRestConnector)
@@ -28,9 +29,6 @@ type
 
 implementation
 
-uses
-  CF.StringUtils;
-
 { TConnectorRest }
 
 procedure TRestConnector.DoAfterGet;
@@ -41,7 +39,7 @@ end;
 
 function TRestConnector.GetFullURL: string;
 begin
-  Result := FormatString(FURLBase, FParamValues)
+  Result := FURLBase.FormatValues(FParamValues)
 end;
 
 function TRestConnector.GetResponseJson: TJsonValue;
@@ -63,7 +61,7 @@ end;
 
 procedure TRestConnector.ValidateURLBase(_URLBase: string);
 begin
-  if _URLBase.Trim.IsEmpty then
+  if Trim(_URLBase) = '' then
     raise Exception.Create('Empty URL is not allowed!');
 end;
 

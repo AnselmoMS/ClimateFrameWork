@@ -69,6 +69,7 @@
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_IMPLICIT_IMPORT>false</DCC_IMPLICIT_IMPORT>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -99,10 +100,10 @@
         <DCCReference Include="Source\Services\CF.Services.ClimateFinder.Provider.ClimaTempo.pas"/>
         <DCCReference Include="Source\Entities\CF.Entities.ClimateData.pas"/>
         <DCCReference Include="Source\Connections\CF.Connections.Rest.Provider.pas"/>
-        <DCCReference Include="Source\Utils\CF.StringUtils.pas"/>
-        <DCCReference Include="Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces.pas"/>
-        <DCCReference Include="Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.pas"/>
-        <DCCReference Include="Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.Types.pas"/>
+        <DCCReference Include="Source\Utils\CF.Utils.StringHelper.pas"/>
+        <DCCReference Include="Source\Utils\CF.Utils.ResourceLoader.Interfaces.pas"/>
+        <DCCReference Include="Source\Utils\CF.Utils.ResourceLoader.Types.pas"/>
+        <DCCReference Include="Source\Utils\CF.Utils.ResourceLoader.pas"/>
         <RcItem Include="Resources\PNG\128px\1.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>cfi1</ResourceId>
@@ -221,10 +222,10 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDS)\Components\FastReport 6.6\LibD26\dclfrxIBX26.bpl">FastReport 6.0 IBX Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDS)\Components\FastReport 6.6\LibD26\dclfsIBX26.bpl">FastScript 1.9 IBX Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDS)\Components\FastReport 6 VCL Professional\LibD27\dclfrxIBX27.bpl">FastReport 6.0 IBX Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDS)\Components\FastReport 6 VCL Professional\LibD27\dclfsIBX27.bpl">FastScript 1.9 IBX Components</Excluded_Packages>
                 </Excluded_Packages>
                 <Source>
                     <Source Name="MainSource">ClimateFramework.dpk</Source>

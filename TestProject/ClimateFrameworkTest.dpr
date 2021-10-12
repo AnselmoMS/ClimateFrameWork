@@ -15,7 +15,7 @@ uses
   DUnitX.TestFramework,
   CFTest.Connections in 'Source\CFTest.Connections.pas',
   CF.Connections.Rest.Connector in '..\Source\Connections\CF.Connections.Rest.Connector.pas',
-  CF.StringUtils in '..\Source\Utils\CF.StringUtils.pas',
+  CF.Utils.StringHelper in '..\Source\Utils\CF.Utils.StringHelper.pas',
   CF.Connections.Rest.Interfaces in '..\Source\Connections\CF.Connections.Rest.Interfaces.pas';
 
 {$IFNDEF TESTINSIGHT}

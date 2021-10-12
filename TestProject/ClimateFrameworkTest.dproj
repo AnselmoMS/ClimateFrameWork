@@ -87,7 +87,7 @@
         </DelphiCompile>
         <DCCReference Include="Source\CFTest.Connections.pas"/>
         <DCCReference Include="..\Source\Connections\CF.Connections.Rest.Connector.pas"/>
-        <DCCReference Include="..\Source\Utils\CF.StringUtils.pas"/>
+        <DCCReference Include="..\Source\Utils\CF.Utils.StringHelper.pas"/>
         <DCCReference Include="..\Source\Connections\CF.Connections.Rest.Interfaces.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

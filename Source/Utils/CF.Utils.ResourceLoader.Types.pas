@@ -1,4 +1,4 @@
-unit CF.Services.ClimateFinder.Adapter.ResourceLoader.Types;
+unit CF.Utils.ResourceLoader.Types;
 
 interface
 

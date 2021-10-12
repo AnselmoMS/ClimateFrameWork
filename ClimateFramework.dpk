@@ -51,10 +51,10 @@ contains
   CF.Services.ClimateFinder.Provider.ClimaTempo in 'Source\Services\CF.Services.ClimateFinder.Provider.ClimaTempo.pas',
   CF.Entities.ClimateData in 'Source\Entities\CF.Entities.ClimateData.pas',
   CF.Connections.Rest.Provider in 'Source\Connections\CF.Connections.Rest.Provider.pas',
-  CF.StringUtils in 'Source\Utils\CF.StringUtils.pas',
-  CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces in 'Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces.pas',
-  CF.Services.ClimateFinder.Adapter.ResourceLoader in 'Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.pas',
-  CF.Services.ClimateFinder.Adapter.ResourceLoader.Types in 'Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.Types.pas';
+  CF.Utils.StringHelper in 'Source\Utils\CF.Utils.StringHelper.pas',
+  CF.Utils.ResourceLoader.Interfaces in 'Source\Utils\CF.Utils.ResourceLoader.Interfaces.pas',
+  CF.Utils.ResourceLoader.Types in 'Source\Utils\CF.Utils.ResourceLoader.Types.pas',
+  CF.Utils.ResourceLoader in 'Source\Utils\CF.Utils.ResourceLoader.pas';
 
 end.
 

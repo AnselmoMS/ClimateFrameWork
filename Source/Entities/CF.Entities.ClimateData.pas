@@ -4,7 +4,7 @@ interface
 
 uses
   REST.Json.Types,
-  CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces;
+  CF.Utils.ResourceLoader.Interfaces;
 
 {$M+}
 

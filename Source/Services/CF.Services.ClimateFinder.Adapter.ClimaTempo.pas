@@ -5,11 +5,10 @@ uses
  System.Classes,
  System.JSON,
  CF.Entities.ClimateData,
- CF.Services.ClimateFinder.Interfaces,
  CF.Connections.Rest.Interfaces,
- CF.Services.ClimateFinder.Adapter.ResourceLoader,
- CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces,
- CF.Services.ClimateFinder.Adapter.ResourceLoader.Types;
+ CF.Utils.ResourceLoader.Interfaces,
+ CF.Utils.ResourceLoader,
+ CF.Utils.ResourceLoader.Types;
 
  const
    CLIMATEMPO_ICON_NAMES : array [TCFResource] of String =
@@ -44,8 +43,9 @@ uses
  type
   TClimateFinderAdapterClimaTempo = class(TInterfacedObject, IRestAdapter<TClimateData>)
   public
-    function FromJson(_ResponseJson: TJsonValue): TClimateData;
     class function New: IRestAdapter<TClimateData>;
+    //
+    function FromJson(_ResponseJson: TJsonValue): TClimateData;
   end;
 
   TClimateFinderResourceLoaderClimaTempo = class(TInterfacedObject, IClimateFinderResourceLoader)
@@ -53,9 +53,11 @@ uses
     FResourceLoader: IResourceLoader;
     FIconName: string;
   public
-    constructor Create(_AIconName: String);
-    function GetStream: TResourceStream;
     class function New(_AIconName: String): IClimateFinderResourceLoader;
+    //
+    constructor Create(_AIconName: String);
+    //
+    function GetStream: TResourceStream;
   end;
 
 implementation
@@ -133,7 +135,8 @@ end;
 
 constructor TClimateFinderResourceLoaderClimaTempo.Create(_AIconName: String);
 begin
-  FIconName := _AIconName
+  FIconName := _AIconName;
+  FResourceLoader:= TCustomResourceLoader.New.WithHandle(FindClassHInstance(Self.ClassType));
 end;
 
 function TClimateFinderResourceLoaderClimaTempo.GetStream: TResourceStream;
@@ -143,7 +146,7 @@ begin
   Result := nil;
   for r := Low(TCFResource) to High(TCFResource) do
     if CLIMATEMPO_ICON_NAMES[r] = FIconName then
-      Result := FResourceLoader.GetStreamByName(CLIMATEMPO_ICON_NAMES[r]);
+      Exit(FResourceLoader.GetStreamByResource(r));
 end;
 
 class function TClimateFinderResourceLoaderClimaTempo.New(_AIconName: String): IClimateFinderResourceLoader;
