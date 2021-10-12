@@ -1,6 +1,7 @@
 package ClimateFramework;
 
 {$R *.res}
+{$R *.dres}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
@@ -46,11 +47,14 @@ contains
   CF.Services.ClimateFinder.Interfaces in 'Source\Services\CF.Services.ClimateFinder.Interfaces.pas',
   CF.Services.ClimateFinder in 'Source\Services\CF.Services.ClimateFinder.pas',
   CF.Services.ClimateFinder.Types in 'Source\Services\CF.Services.ClimateFinder.Types.pas',
-  CF.Services.ClimateFinder.Adapters in 'Source\Services\CF.Services.ClimateFinder.Adapters.pas',
+  CF.Services.ClimateFinder.Adapter.ClimaTempo in 'Source\Services\CF.Services.ClimateFinder.Adapter.ClimaTempo.pas',
   CF.Services.ClimateFinder.Provider.ClimaTempo in 'Source\Services\CF.Services.ClimateFinder.Provider.ClimaTempo.pas',
   CF.Entities.ClimateData in 'Source\Entities\CF.Entities.ClimateData.pas',
   CF.Connections.Rest.Provider in 'Source\Connections\CF.Connections.Rest.Provider.pas',
-  CF.StringUtils in 'Source\Utils\CF.StringUtils.pas';
+  CF.StringUtils in 'Source\Utils\CF.StringUtils.pas',
+  CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces in 'Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces.pas',
+  CF.Services.ClimateFinder.Adapter.ResourceLoader in 'Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.pas',
+  CF.Services.ClimateFinder.Adapter.ResourceLoader.Types in 'Source\Services\CF.Services.ClimateFinder.Adapter.ResourceLoader.Types.pas';
 
 end.
 

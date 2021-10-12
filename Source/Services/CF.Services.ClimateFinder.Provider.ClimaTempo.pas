@@ -22,7 +22,7 @@ implementation
 
 uses
   System.SysUtils,
-  CF.Services.ClimateFinder.Adapters;
+  CF.Services.ClimateFinder.Adapter.ClimaTempo;
 
 { TClimateFinderProviderClimaTempo }
 

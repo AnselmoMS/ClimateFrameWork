@@ -1,11 +1,45 @@
-unit CF.Services.ClimateFinder.Adapters;
+unit CF.Services.ClimateFinder.Adapter.ClimaTempo;
 
 interface
 uses
+ System.Classes,
  System.JSON,
  CF.Entities.ClimateData,
  CF.Services.ClimateFinder.Interfaces,
- CF.Connections.Rest.Interfaces;
+ CF.Connections.Rest.Interfaces,
+ CF.Services.ClimateFinder.Adapter.ResourceLoader,
+ CF.Services.ClimateFinder.Adapter.ResourceLoader.Interfaces,
+ CF.Services.ClimateFinder.Adapter.ResourceLoader.Types;
+
+ const
+   CLIMATEMPO_ICON_NAMES : array [TCFResource] of String =
+   (
+    '1'  ,
+    '1n' ,
+    '2'  ,
+    '2n' ,
+    '2r' ,
+    '2rn',
+    '3'  ,
+    '3n' ,
+    '3TM',
+    '4'  ,
+    '4n' ,
+    '4r' ,
+    '4rn',
+    '4t' ,
+    '4tn',
+    '5'  ,
+    '5n' ,
+    '6'  ,
+    '6n' ,
+    '7'  ,
+    '7n' ,
+    '8'  ,
+    '8n' ,
+    '9'  ,
+    '9n' 
+   );
 
  type
   TClimateFinderAdapterClimaTempo = class(TInterfacedObject, IRestAdapter<TClimateData>)
@@ -14,12 +48,21 @@ uses
     class function New: IRestAdapter<TClimateData>;
   end;
 
+  TClimateFinderResourceLoaderClimaTempo = class(TInterfacedObject, IClimateFinderResourceLoader)
+  var
+    FResourceLoader: IResourceLoader;
+    FIconName: string;
+  public
+    constructor Create(_AIconName: String);
+    function GetStream: TResourceStream;
+    class function New(_AIconName: String): IClimateFinderResourceLoader;
+  end;
+
 implementation
 
 uses
   System.SysUtils,
   REST.Json,
-
   Winapi.Windows,
   System.RegularExpressions;
 
@@ -53,7 +96,6 @@ end;
 function TClimateFinderAdapterClimaTempo.FromJson(_ResponseJson: TJsonValue): TClimateData;
 var
  LResult: TClimateData;
-
 begin
   {$REGION 'Exemplo de retorno'}
 (*
@@ -80,10 +122,33 @@ begin
   var LNewResponse := ReplaceDateTimeToIso8061(_ResponseJson, 'data.date');
   OutputDebugString(PChar(LNewResponse.ToJSON));
   LResult := TJson.JsonToObject<TClimateData>(LNewResponse.ToJSON);
+  LResult.Data.IconLoader := TClimateFinderResourceLoaderClimaTempo.New(LResult.Data.Icon);
 
 //  First chance exception... Exception class EDateTimeException with message 'Invalid date string: 2021-09-19 07:59:46'
 //  LResult := TJson.JsonToObject<TClimateData>(_ResponseJson.ToJSON, [joDateFormatISO8601, joDateIsUTC]);
   Result := LResult;
+end;
+
+{ TClimateFinderResourceLoaderClimaTempo }
+
+constructor TClimateFinderResourceLoaderClimaTempo.Create(_AIconName: String);
+begin
+  FIconName := _AIconName
+end;
+
+function TClimateFinderResourceLoaderClimaTempo.GetStream: TResourceStream;
+var
+  r: TCFResource;
+begin
+  Result := nil;
+  for r := Low(TCFResource) to High(TCFResource) do
+    if CLIMATEMPO_ICON_NAMES[r] = FIconName then
+      Result := FResourceLoader.GetStreamByName(CLIMATEMPO_ICON_NAMES[r]);
+end;
+
+class function TClimateFinderResourceLoaderClimaTempo.New(_AIconName: String): IClimateFinderResourceLoader;
+begin
+  Result:= Self.Create(_AIconName)
 end;
 
 end.

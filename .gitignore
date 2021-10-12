@@ -1,0 +1,16 @@
+/TestProject/Source/__history
+/TestProject/Win32/Debug/*.dcu
+/TestProject/Win32/Debug
+/TestProject/__history
+/TestProject/modules
+/TestProject/*.local
+/TestProject/*.identcache
+/TestProject/*.skincfg
+/TestProject/*.res
+/Source/Connections/__history
+/Source/Services/__history
+/Source/Utils/__history
+/Source/Entities/__history
+/Win32
+/__history
+/modules
