@@ -10,9 +10,8 @@ uses
   CF.Connections.Rest.Interfaces;
 
   type
-   TClimateFinder<T> = class(TInterfacedObject, IClimateFinder<T>)
+   TClimateFinder = class(TInterfacedObject, IClimateFinder)
    private
-     FParent : T;
      FConnector: IRestConnector;
      FAfterGetData: TProc;
      FLocation: TClimateLocation;
@@ -24,23 +23,22 @@ uses
      procedure ConfigureConnection;
      procedure DoNewProvider(_Index: Integer);
    public
-     constructor Create(_AParent: T);
+     constructor Create;
      destructor Destroy; override;
      //
-     class function New(_AParent: T): IClimateFinder<T>;
+     class function New: IClimateFinder;
      //
-     function AddProvider(_Provider: IRestProvider<TClimateData>): IClimateFinder<T>;
-     function Find: IClimateFinder<T>;
+     function AddProvider(_Provider: IRestProvider<TClimateData>): IClimateFinder;
+     function Find: IClimateFinder;
      function GetData: TClimateData;
-     function OnAfterGetData(_AProc: TProc): IClimateFinder<T>;
-     function WithConnector(_Connector: IRestConnector): IClimateFinder<T>;
-     function WithLocation(_ALocation: TClimateLocation): IClimateFinder<T>;
-     function Parent: T;
+     function OnAfterGetData(_AProc: TProc): IClimateFinder;
+     function WithConnector(_Connector: IRestConnector): IClimateFinder;
+     function WithLocation(_ALocation: TClimateLocation): IClimateFinder;
    end;
 
 implementation
 
-procedure TClimateFinder<T>.ConfigureConnection;
+procedure TClimateFinder.ConfigureConnection;
 begin
   FConnector
     .WithURLBase(FCurrClimateProvider.GetURLBase)
@@ -52,71 +50,65 @@ begin
       end);
 end;
 
-constructor TClimateFinder<T>.Create(_AParent: T);
+constructor TClimateFinder.Create;
 begin
   FClimateProviders := TList<IRestProvider<TClimateData>>.Create;
   FCurrClimateProvider := nil;
-  FParent := _AParent;
 end;
 
-destructor TClimateFinder<T>.Destroy;
+destructor TClimateFinder.Destroy;
 begin
   FClimateProviders.Free;
 end;
 
-procedure TClimateFinder<T>.DoAfterGetData;
+procedure TClimateFinder.DoAfterGetData;
 begin
   if Assigned(FAfterGetData) then
     FAfterGetData();
 end;
 
-function TClimateFinder<T>.Find: IClimateFinder<T>;
+function TClimateFinder.Find: IClimateFinder;
 begin
   ConfigureConnection;
   FConnector.ExecuteGet;
   Result := Self;
 end;
 
-function TClimateFinder<T>.GetData: TClimateData;
+function TClimateFinder.GetData: TClimateData;
 begin
   Result:= FCurrClimateProvider.FromJson(FConnector.GetResponseJson);
 end;
 
-class function TClimateFinder<T>.New(_AParent: T): IClimateFinder<T>;
+class function TClimateFinder.New: IClimateFinder;
 begin
-  Result := Self.Create(_AParent);
+  Result := Self.Create;
 end;
 
-function TClimateFinder<T>.OnAfterGetData(_AProc: TProc): IClimateFinder<T>;
+function TClimateFinder.OnAfterGetData(_AProc: TProc): IClimateFinder;
 begin
   FAfterGetData := _AProc;
   Result := Self
 end;
 
-function TClimateFinder<T>.Parent: T;
-begin
-  Result := FParent;
-end;
-
-procedure TClimateFinder<T>.DoNewProvider(_Index: Integer);
+procedure TClimateFinder.DoNewProvider(_Index: Integer);
 begin
   if not Assigned(FCurrClimateProvider) then
     FCurrClimateProvider := FClimateProviders[_Index];
 end;
 
-function TClimateFinder<T>.WithConnector(_Connector: IRestConnector): IClimateFinder<T>;
+function TClimateFinder.WithConnector(_Connector: IRestConnector): IClimateFinder;
 begin
   FConnector := _Connector;
   Result := Self
 end;
 
-function TClimateFinder<T>.WithLocation(_ALocation: TClimateLocation): IClimateFinder<T>;
+function TClimateFinder.WithLocation(_ALocation: TClimateLocation): IClimateFinder;
 begin
   FLocation := _ALocation;
   Result := Self
 end;
 
-function TClimateFinder<T>.AddProvider(_Provider: IRestProvider<TClimateData>): IClimateFinder<T>;
+function TClimateFinder.AddProvider(_Provider: IRestProvider<TClimateData>): IClimateFinder;
 begin
   DoNewProvider(FClimateProviders.Add(_Provider));
   Result := Self;

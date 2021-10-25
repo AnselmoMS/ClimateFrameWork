@@ -4,7 +4,7 @@ interface
 
 uses
   REST.Json.Types,
-  CF.Utils.ResourceLoader.Interfaces;
+  CF.Entities.ClimateData.Types;
 
 {$M+}
 
@@ -16,8 +16,8 @@ type
     FHumidity: Double;
     FIcon: string;
     FPressure: Double;
-    FResourceLoader: IClimateFinderResourceLoader;
     FSensation: Integer;
+    FCFIcon: TCFIcon;
     FTemperature: Integer;
     FWindDirection: string;
     FWindVelocity: Integer;
@@ -25,8 +25,7 @@ type
     property Condition: string read FCondition write FCondition;
     property Date: TDateTime read FDate write FDate;
     property Humidity: Double read FHumidity write FHumidity;
-    property Icon: string read FIcon write FIcon;
-    property IconLoader: IClimateFinderResourceLoader read FResourceLoader write FResourceLoader;
+    property ClimateIcon: TCFIcon read FCFIcon write FCFIcon;
     property Pressure: Double read FPressure write FPressure;
     property Sensation: Integer read FSensation write FSensation;
     property Temperature: Integer read FTemperature write FTemperature;

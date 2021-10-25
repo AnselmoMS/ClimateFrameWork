@@ -1,7 +1,6 @@
 package ClimateFramework;
 
 {$R *.res}
-{$R *.dres}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
@@ -52,9 +51,7 @@ contains
   CF.Entities.ClimateData in 'Source\Entities\CF.Entities.ClimateData.pas',
   CF.Connections.Rest.Provider in 'Source\Connections\CF.Connections.Rest.Provider.pas',
   CF.Utils.StringHelper in 'Source\Utils\CF.Utils.StringHelper.pas',
-  CF.Utils.ResourceLoader.Interfaces in 'Source\Utils\CF.Utils.ResourceLoader.Interfaces.pas',
-  CF.Utils.ResourceLoader.Types in 'Source\Utils\CF.Utils.ResourceLoader.Types.pas',
-  CF.Utils.ResourceLoader in 'Source\Utils\CF.Utils.ResourceLoader.pas';
+  CF.Entities.ClimateData.Types in 'Source\Entities\CF.Entities.ClimateData.Types.pas';
 
 end.
 
